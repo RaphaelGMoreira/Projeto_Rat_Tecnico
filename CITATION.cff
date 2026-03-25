@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: 'Se este projeto ajudar no seu trabalho, cite-o usando os metadados abaixo.'
+title: 'RAT - Relatorio de Atendimento Tecnico'
+type: software
+version: '1.0.0'
+date-released: '2026-03-25'
+license: 'MIT'
+authors:
+  - given-names: 'Equipe de Tecnicos'
+    family-names: 'Projeto RAT'
+repository-code: 'https://github.com/RaphaelGMoreira/Projeto_Rat_Tecnico.git'
+url: 'https://github.com/RaphaelGMoreira/Projeto_Rat_Tecnico.git'

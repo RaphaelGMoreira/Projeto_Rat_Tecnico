@@ -1,0 +1,347 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAT ARKLOK</title>
+    <link rel="stylesheet" href="src/css/styles.css">
+</head>
+
+<body>
+    <main class="page">
+        <header class="page-header">
+            <h1>ARKLOK</h1>
+            <p>RAT (RELATÓRIO ATENDIMENTO TÉCNICO)</p>
+        </header>
+
+        <form id="chamadoForm" class="rat-form">
+            <p class="required-note">* CAMPOS OBRIGATÓRIOS</p>
+
+            <fieldset class="rat-fieldset">
+                <legend>DADOS DO CHAMADO</legend>
+                <div class="field-row">
+                    <label for="chamado">N° DO CHAMADO:</label>
+                    <input type="text" id="chamado" name="chamado" required autocomplete="off">
+                </div>
+                <div class="field-row">
+                    <label for="endereco">ENDEREÇO DO CHAMADO:</label>
+                    <input type="text" id="endereco" name="endereco" required autocomplete="street-address">
+                </div>
+                <div class="field-row field-row-inline">
+                    <div class="field-split">
+                        <label for="cidade">CIDADE DO CHAMADO:</label>
+                        <input type="text" id="cidade" name="cidade" required autocomplete="address-level2">
+                    </div>
+                    <div class="field-split field-split-small">
+                        <label for="UF">UF:</label>
+                        <input type="text" id="UF" name="UF" maxlength="2" required autocomplete="address-level1">
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset class="rat-fieldset">
+                <legend>DADOS DO TÉCNICO</legend>
+                <div class="field-row">
+                    <label for="tecnico">NOME DO TÉCNICO:</label>
+                    <input type="text" id="tecnico" name="tecnico" required autocomplete="name">
+                </div>
+                <div class="field-row">
+                    <label for="empresa">EMPRESA PARCEIRA:</label>
+                    <input type="text" id="empresa" name="empresa" required autocomplete="organization">
+                </div>
+                <div class="field-row field-row-inline">
+                    <div class="field-split">
+                        <label for="kminicial">KM INICIAL: </label>
+                        <input type="text" id="kminicial" name="kminicial" inputmode="numeric" pattern="[0-9]*" required aria-describedby="mensagem-erro-km">
+                    </div>
+                    <div class="field-split">
+                        <label for="kmfinal">KM FINAL: </label>
+                        <input type="text" id="kmfinal" name="kmfinal" inputmode="numeric" pattern="[0-9]*" required aria-describedby="mensagem-erro-km">
+                    </div>
+                </div>
+                <p id="mensagem-erro-km" class="field-error-message" aria-live="polite"></p>
+
+                <div class="field-row field-row-inline">
+                    <div class="field-split">
+                        <label for="data">DATA DO ATENDIMENTO:</label>
+                        <input type="date" id="data" name="data" required>
+                    </div>
+                    <div class="field-split">
+                        <label for="inicio">HORÁRIO DE INÍCIO:</label>
+                        <input type="time" id="inicio" name="inicio" required>
+                    </div>
+                    <div class="field-split">
+                        <label for="termino">HORÁRIO TÉRMINO:</label>
+                        <input type="time" id="termino" name="termino" required aria-describedby="mensagem-erro-horario">
+                    </div>
+                </div>
+                <p id="mensagem-erro-horario" class="field-error-message" aria-live="polite"></p>
+            </fieldset>
+
+            <fieldset class="rat-fieldset">
+                <legend>DADOS DO CLIENTE</legend>
+                <input type="text" id="dados_cliente" name="dados_cliente" readonly class="oculto">
+
+                <div class="field-row">
+                    <label for="razao_social">RAZÃO SOCIAL / NOME FANTASIA:</label>
+                    <input type="text" id="razao_social" name="razao_social" required autocomplete="organization">
+                </div>
+                <div class="field-row">
+                    <label for="nome_responsavel">NOME DO RESPONSÁVEL:</label>
+                    <input type="text" id="nome_responsavel" name="nome_responsavel" required autocomplete="name">
+                </div>
+                <div class="field-row field-row-inline">
+                    <div class="field-split">
+                        <label for="telefone_cliente">TELEFONE:</label>
+                        <input type="text" id="telefone_cliente" name="telefone_cliente" inputmode="numeric" pattern="[0-9]*" autocomplete="tel">
+                    </div>
+                    <div class="field-split">
+                        <label for="email_cliente">E-MAIL:</label>
+                        <input type="email" id="email_cliente" name="email_cliente" pattern="^[^\s@]+@[^\s@]+\.com(\.br)?$" autocomplete="email">
+                    </div>
+                </div>
+                <div class="field-row field-row-inline">
+                    <div class="field-split">
+                        <label for="cargo_cliente">CARGO:</label>
+                        <input type="text" id="cargo_cliente" name="cargo_cliente" autocomplete="organization-title">
+                    </div>
+                    <div class="field-split">
+                        <label for="depto_cliente">DEPARTAMENTO:</label>
+                        <input type="text" id="depto_cliente" name="depto_cliente" autocomplete="organization">
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset class="rat-fieldset">
+                <legend>EQUIPAMENTO / SERVIÇO</legend>
+                <div class="service-options-row">
+                    <label class="inline-control" for="retirado_lab">
+                        RETIRADO PARA LABORATÓRIO S/N:
+                        <select id="retirado_lab" name="retirado_lab">
+                            <option value="">--</option>
+                            <option value="S">S</option>
+                            <option value="N">N</option>
+                        </select>
+                    </label>
+
+                    <label class="inline-control" for="substituicao_troca">
+                        SUBSTITUIÇÃO OU TROCA:
+                        <input type="checkbox" id="substituicao_troca" name="substituicao_troca">
+                    </label>
+
+                    <label class="inline-control" for="upgrade">
+                        UPGRADE (ATUALIZAÇÃO SSD, MEMÓRIA):
+                        <input type="checkbox" id="upgrade" name="upgrade">
+                    </label>
+                </div>
+
+                <p class="required-group-note">* Obrigatório selecionar ao menos um tipo de equipamento (NOTEBOOK, DESKTOP, IMPRESSORA, MOBILE) ou preencher OUTROS.</p>
+
+                <div class="device-type-row">
+                    <label class="inline-checkbox" for="notebook"><span>NOTEBOOK:</span><input type="checkbox" id="notebook" name="notebook"></label>
+                    <label class="inline-checkbox" for="desktop"><span>DESKTOP:</span><input type="checkbox" id="desktop" name="desktop"></label>
+                    <label class="inline-checkbox" for="impressora"><span>IMPRESSORA:</span><input type="checkbox" id="impressora" name="impressora"></label>
+                    <label class="inline-checkbox" for="mobile"><span>MOBILE:</span><input type="checkbox" id="mobile" name="mobile"></label>
+                </div>
+
+                <div class="field-row outros-row">
+                    <label for="outros">OUTROS:</label>
+                    <input type="text" id="outros" name="outros" maxlength="15" aria-describedby="contador-outros">
+                    <div id="contador-outros" class="contador" aria-live="polite">0 / 15 caracteres</div>
+                </div>
+            </fieldset>
+
+            <fieldset class="rat-fieldset">
+                <legend>DADOS DO(S) EQUIPAMENTO(S)</legend>
+                <input type="text" id="dados_eqpto" name="dados_eqpto" readonly class="oculto">
+                <input type="text" id="eqpto_antigo" name="eqpto_antigo" readonly class="oculto">
+                <input type="text" id="eqpto_novo" name="eqpto_novo" readonly class="oculto">
+
+                <div class="equipment-columns">
+                    <section class="panel-card">
+                        <h3>EQUIPAMENTO ANTIGO</h3>
+                        <div class="field-row">
+                            <label for="modelo_a">MODELO:</label>
+                            <input type="text" id="modelo_a" name="modelo_a" required>
+                        </div>
+                        <div class="field-row">
+                            <label for="patrimonio_a">N° PATRIMÔNIO DO EQUIPAMENTO:</label>
+                            <input type="text" id="patrimonio_a" name="patrimonio_a" inputmode="numeric" pattern="[0-9]*" required>
+                        </div>
+                        <div class="field-row">
+                            <label for="serie_a">N° SÉRIE:</label>
+                            <input type="text" id="serie_a" name="serie_a" inputmode="numeric" pattern="[0-9]*">
+                        </div>
+                        <div class="field-row">
+                            <label for="hostname_a">HOSTNAME:</label>
+                            <input type="text" id="hostname_a" name="hostname_a">
+                        </div>
+                        <div class="field-row">
+                            <label for="etiqueta_a">N° ETIQUETA E SÉRIE CLIENTE:</label>
+                            <input type="text" id="etiqueta_a" name="etiqueta_a">
+                        </div>
+                        <div class="field-row">
+                            <label for="imei_a">IMEI:</label>
+                            <input type="text" id="imei_a" name="imei_a">
+                        </div>
+                    </section>
+
+                    <section class="panel-card">
+                        <h3>EQUIPAMENTO NOVO</h3>
+                        <div class="field-row">
+                            <label for="modelo_b">MODELO:</label>
+                            <input type="text" id="modelo_b" name="modelo_b">
+                        </div>
+                        <div class="field-row">
+                            <label for="patrimonio_b">N° PATRIMÔNIO DO EQUIPAMENTO:</label>
+                            <input type="text" id="patrimonio_b" name="patrimonio_b" inputmode="numeric" pattern="[0-9]*">
+                        </div>
+                        <div class="field-row">
+                            <label for="serie_b">N° SÉRIE:</label>
+                            <input type="text" id="serie_b" name="serie_b" inputmode="numeric" pattern="[0-9]*">
+                        </div>
+                        <div class="field-row">
+                            <label for="hostname_b">HOSTNAME:</label>
+                            <input type="text" id="hostname_b" name="hostname_b">
+                        </div>
+                        <div class="field-row">
+                            <label for="etiqueta_b">N° ETIQUETA E SÉRIE CLIENTE:</label>
+                            <input type="text" id="etiqueta_b" name="etiqueta_b">
+                        </div>
+                        <div class="field-row">
+                            <label for="imei_b">IMEI:</label>
+                            <input type="text" id="imei_b" name="imei_b">
+                        </div>
+                    </section>
+                </div>
+            </fieldset>
+
+            <fieldset class="rat-fieldset">
+                <legend>INFORMAÇÕES COMPLEMENTARES</legend>
+                <div class="info-columns">
+                    <section class="panel-card">
+                        <h3>BACKUP</h3>
+                        <div class="field-row field-row-with-check">
+                            <label for="backup_a">BACKUP REALIZADO:</label>
+                            <div class="input-check">
+                                <input type="text" id="backup_a" name="backup_a">
+                                <input type="checkbox" id="check_backup_a" name="check_backup_a" aria-label="Confirmar backup realizado">
+                            </div>
+                        </div>
+                        <div class="field-row field-row-with-check">
+                            <label for="patrimonio_b1">DETALHAR / PATRIMÔNIO:</label>
+                            <div class="input-check">
+                                <input type="text" id="patrimonio_b1" name="patrimonio_b1">
+                                <input type="checkbox" id="check_patrimonio_b1" name="check_patrimonio_b1" aria-label="Confirmar detalhar patrimônio backup">
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="panel-card">
+                        <h3>ACESSÓRIOS OU PERIFÉRICOS</h3>
+                        <div class="field-row field-row-with-check">
+                            <label for="usuario_a">NOME PERFIL USUÁRIO:</label>
+                            <div class="input-check">
+                                <input type="text" id="usuario_a" name="usuario_a">
+                                <input type="checkbox" id="check_usuario_a" name="check_usuario_a" aria-label="Confirmar perfil de usuário">
+                            </div>
+                        </div>
+                        <div class="field-row field-row-with-check">
+                            <label for="patrimonio_b2">DETALHAR / PATRIMÔNIO:</label>
+                            <div class="input-check">
+                                <input type="text" id="patrimonio_b2" name="patrimonio_b2">
+                                <input type="checkbox" id="check_patrimonio_b2" name="check_patrimonio_b2" aria-label="Confirmar detalhar patrimônio acessórios">
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </fieldset>
+
+            <fieldset class="rat-fieldset">
+                <legend>VALIDAÇÃO SOFTWARE DE GESTÃO</legend>
+                <div class="device-type-row">
+                    <label class="inline-checkbox" for="aim"><span>AIM:</span><input type="checkbox" id="aim" name="aim"></label>
+                    <label class="inline-checkbox" for="kace"><span>KACE:</span><input type="checkbox" id="kace" name="kace"></label>
+                    <label class="inline-checkbox" for="v_outros"><span>OUTROS:</span><input type="checkbox" id="v_outros" name="v_outros"></label>
+                </div>
+
+                <div class="field-row outros-row">
+                    <label for="observacoes">OBSERVAÇÕES:</label>
+                    <input id="observacoes" name="observacoes" maxlength="15" aria-describedby="contador">
+                    <div id="contador" class="contador" aria-live="polite">0 / 15 caracteres</div>
+                </div>
+            </fieldset>
+
+            <fieldset class="rat-fieldset">
+                <legend>SINTOMA DO PROBLEMA RELATADO</legend>
+                <div class="field-row">
+                    <label for="sintoma">SINTOMA DO PROBLEMA RELATADO</label>
+                    <textarea id="sintoma" name="sintoma" maxlength="200" required aria-describedby="contador-sintoma"></textarea>
+                    <div id="contador-sintoma" class="contador" aria-live="polite">0 / 200 caracteres</div>
+                </div>
+            </fieldset>
+
+            <fieldset class="rat-fieldset">
+                <legend>RELATÓRIO TÉCNICO - FECHAMENTO</legend>
+                <div class="field-row">
+                    <label for="relatorio">RELATÓRIO TÉCNICO - FECHAMENTO</label>
+                    <textarea id="relatorio" name="relatorio" maxlength="900" required aria-describedby="contador-relatorio"></textarea>
+                    <div id="contador-relatorio" class="contador" aria-live="polite">0 / 900 caracteres</div>
+                </div>
+            </fieldset>
+
+            <fieldset class="rat-fieldset">
+                <legend>STATUS DO CHAMADO</legend>
+                <div class="field-row">
+                    <label for="status_chamado">STATUS DO CHAMADO:</label>
+                    <select name="status_chamado" id="status_chamado" required>
+                        <option value="">--</option>
+                        <option value="RESOLVIDO">RESOLVIDO</option>
+                        <option value="PENDENTE">PENDENTE</option>
+                        <option value="IMPRODUTIVO">IMPRODUTIVO</option>
+                    </select>
+                </div>
+            </fieldset>
+
+            <fieldset class="rat-fieldset">
+                <legend>ASSINATURAS</legend>
+
+                <div class="field-row">
+                    <label for="assinatura">ASSINATURA DO TÉCNICO:</label>
+                    <div class="signature-box">
+                        <canvas id="assinatura" width="500" height="150" class="signature-canvas"></canvas>
+                        <span class="assinatura-texto">______ASSINATURA TÉCNICO______</span>
+                    </div>
+                    <button type="button" id="limparAssinatura">Limpar Assinatura</button>
+                </div>
+
+                <div class="field-row">
+                    <label for="assinaturaCliente">ASSINATURA DO CLIENTE:</label>
+                    <p class="signature-note">Este técnico Arklok não está autorizado a realizar a retirada de equipamentos ou periféricos.</p>
+                    <div class="signature-box">
+                        <canvas id="assinaturaCliente" width="500" height="150" class="signature-canvas"></canvas>
+                        <span class="assinatura-texto">______ASSINATURA DO CLIENTE______</span>
+                    </div>
+                    <button type="button" id="limparAssinaturaCliente">Limpar Assinatura</button>
+                </div>
+
+                <p id="mensagem-erro-assinaturas" class="field-error-message" aria-live="polite"></p>
+            </fieldset>
+
+            <div class="action-panel">
+                <h4>O arquivo PDF gerado será salvo nos seus downloads</h4>
+                <button type="button" id="btnPDF">Gerar PDF</button>
+                <button type="button" id="btnScript">Abrir Script de Fechamento</button>
+            </div>
+        </form>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="src/js/rat-regras-negocio.js"></script>
+    <script src="src/js/rat-validacoes-formulario.js"></script>
+    <script src="src/js/rat-gerador-pdf.js"></script>
+    <script src="src/js/rat-aplicacao.js"></script>
+</body>
+
+</html>

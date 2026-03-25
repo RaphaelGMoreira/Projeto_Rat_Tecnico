@@ -1,0 +1,47 @@
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editors / IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*.tmp
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Env and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+*.crt
+*.cer
+
+# Dependency and cache folders
+node_modules/
+.npm/
+.cache/
+
+# Test and coverage artifacts
+coverage/
+.nyc_output/
+
+# Build/output artifacts
+dist/
+build/
+tmp/
+out/
+
+# Generated documents (RAT PDFs locais)
+RAT*.pdf

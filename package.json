@@ -1,0 +1,28 @@
+{
+  "name": "rat-script---para-os-tecnicos",
+  "version": "1.0.0",
+  "description": "Aplicacao web em HTML/CSS/JavaScript para preenchimento de RAT (Relatorio de Atendimento Tecnico), com validacoes de formulario, assinaturas em canvas, geracao de PDF e script padrao de fechamento.",
+  "main": "src/js/rat-aplicacao.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "lint": "npm run lint:js && npm run lint:format",
+    "lint:js": "eslint .",
+    "lint:format": "prettier --check \"**/*.{md,yml,yaml,json,cff}\"",
+    "format": "prettier --write \"**/*.{md,yml,yaml,json,cff}\"",
+    "test": "node --test tests/smoke.test.mjs",
+    "test:syntax": "node --check src/js/rat-regras-negocio.js && node --check src/js/rat-validacoes-formulario.js && node --check src/js/rat-gerador-pdf.js && node --check src/js/rat-aplicacao.js",
+    "check": "npm run lint && npm run test && npm run test:syntax"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "commonjs",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.1.0",
+    "globals": "^17.4.0",
+    "prettier": "^3.8.1"
+  }
+}
