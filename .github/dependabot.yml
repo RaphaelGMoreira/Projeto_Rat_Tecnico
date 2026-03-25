@@ -2,17 +2,54 @@ version: 2
 updates:
   - package-ecosystem: 'github-actions'
     directory: '/'
+    target-branch: 'develop'
     schedule:
       interval: 'weekly'
+      day: 'monday'
+      time: '08:00'
+      timezone: 'America/Sao_Paulo'
     open-pull-requests-limit: 5
+    commit-message:
+      prefix: 'chore(deps)'
     labels:
       - 'dependencies'
       - 'security'
+    groups:
+      github-actions-non-breaking:
+        patterns:
+          - '*'
+        update-types:
+          - 'minor'
+          - 'patch'
+      github-actions-major:
+        patterns:
+          - '*'
+        update-types:
+          - 'major'
+
   - package-ecosystem: 'npm'
     directory: '/'
+    target-branch: 'develop'
     schedule:
       interval: 'weekly'
+      day: 'monday'
+      time: '08:00'
+      timezone: 'America/Sao_Paulo'
     open-pull-requests-limit: 5
+    commit-message:
+      prefix: 'chore(deps)'
     labels:
       - 'dependencies'
       - 'security'
+    groups:
+      npm-non-breaking:
+        patterns:
+          - '*'
+        update-types:
+          - 'minor'
+          - 'patch'
+      npm-major:
+        patterns:
+          - '*'
+        update-types:
+          - 'major'
